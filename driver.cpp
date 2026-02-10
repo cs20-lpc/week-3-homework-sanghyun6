@@ -18,7 +18,7 @@ int main()
 
   do
   {
-    // 메뉴 출력
+
     cout << "\n===== Student Management System =====" << endl;
     cout << "1. Insert Student" << endl;
     cout << "2. Delete Student" << endl;
@@ -34,14 +34,13 @@ int main()
     {
     case 1:
     {
-      // 학생 추가
       int id;
       string name;
       double gpa;
 
       cout << "Enter ID: ";
       cin >> id;
-      cin.ignore(); // 버퍼 클리어
+      cin.ignore();
       cout << "Enter Name: ";
       getline(cin, name);
       cout << "Enter GPA: ";
@@ -54,7 +53,6 @@ int main()
 
     case 2:
     {
-      // 학생 삭제
       int id;
       cout << "Enter ID to delete: ";
       cin >> id;
@@ -64,31 +62,47 @@ int main()
 
     case 3:
     {
-      // 학생 검색
       int id;
       cout << "Enter ID to search: ";
       cin >> id;
-      studentList.getElement(id);
+      bool found = false;
+      for (int i = 0; i < studentList.getLength(); i++)
+      {
+        try
+        {
+          Student s = studentList.getElement(i);
+          if (s.getId() == id)
+          {
+            cout << "Found: ";
+            s.display();
+            found = true;
+            break;
+          }
+        }
+        catch (...)
+        {
+          break;
+        }
+      }
+      if (!found)
+        cout << "Student with ID " << id << " not found!" << endl;
       break;
     }
 
     case 4:
     {
-      // 모든 학생 출력
       studentList.displayAll();
       break;
     }
 
     case 5:
     {
-      // 학생 수 출력
       cout << "Total students: " << studentList.countStudents() << endl;
       break;
     }
 
     case 6:
     {
-      // 코스 추가
       int id;
       string courseName, location;
 

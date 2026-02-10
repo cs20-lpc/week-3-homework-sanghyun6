@@ -32,11 +32,11 @@ void Student::display() const
 
     if (courseCount == 0)
     {
-        cout << "  Courses: None" << endl;
+        cout << "None" << endl;
     }
     else
     {
-        cout << "  Courses:" << endl;
+        cout << "Courses:" << endl;
         for (int i = 0; i < courseCount; i++)
         {
             cout << "    ";
